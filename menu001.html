@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏中心</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            width: 90%;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .game-card.active {
+            cursor: pointer;
+        }
+        
+        .game-card.active:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-card.inactive {
+            opacity: 0.6;
+            filter: grayscale(70%);
+        }
+        
+        .game-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .game-card h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        
+        .game-card p {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin: 10px 0;
+        }
+        
+        .play-btn {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .play-btn:hover {
+            background: #FF8E8E;
+            transform: scale(1.05);
+        }
+        
+        .play-btn.inactive {
+            background: #666;
+            cursor: not-allowed;
+        }
+        
+        .play-btn.inactive:hover {
+            background: #666;
+            transform: none;
+        }
+        
+        .coming-soon {
+            font-size: 0.8em;
+            color: #FF6B6B;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 游戏中心 🎮</h1>
+        <p>选择你想玩的游戏，开始你的冒险之旅！</p>
+        
+        <div class="games-grid">
+            <!-- 游戏1：俄罗斯方块 - 可用 -->
+            <div class="game-card active">
+                <img src="terist.gif" alt="俄罗斯方块">
+                <h2>俄罗斯方块</h2>
+                <p>经典的方块消除游戏，考验你的反应速度和策略能力</p>
+                <button class="play-btn" onclick="openGame('tetist13a.html')">开始游戏</button>
+            </div>
+            
+            <!-- 游戏2：贪吃蛇 - 可用 -->
+            <div class="game-card active">
+                <img src="snake.gif" alt="贪吃蛇">
+                <h2>贪吃蛇</h2>
+                <p>控制小蛇吃掉食物，注意不要撞到自己或墙壁</p>
+                <button class="play-btn" onclick="openGame('snake.html')">开始游戏</button>
+            </div>
+            
+            <!-- 游戏3：记忆翻牌 - 不可用 -->
+            <div class="game-card inactive">
+                <img src="Memory.gif" alt="记忆翻牌">
+                <h2>记忆翻牌</h2>
+                <p>翻开卡片找到所有匹配的对子，挑战你的记忆力</p>
+                <button class="play-btn inactive">暂未开放</button>
+                <div class="coming-soon">即将推出</div>
+            </div>
+            
+            <!-- 游戏4：井字棋 - 不可用 -->
+            <div class="game-card inactive">
+                <img src="Tic-Tac-Toe.gif" alt="井字棋">
+                <h2>井字棋</h2>
+                <p>经典的XO游戏，与AI对战，看谁能先连成一条线</p>
+                <button class="play-btn inactive">暂未开放</button>
+                <div class="coming-soon">即将推出</div>
+            </div>
+        </div>
+        
+        <footer>
+            © 2023 游戏中心 | 当前可用游戏: 俄罗斯方块, 贪吃蛇
+        </footer>
+    </div>
+    
+    <script>
+        // 打开对应游戏页面的函数
+        function openGame(gameFile) {
+            // 在实际使用时，请确保这些HTML文件存在于同一目录下
+            // 或者修改为正确的文件路径
+            window.open(gameFile, '_blank');
+            
+            // 如果你想在同一窗口打开，可以使用：
+            // window.location.href = gameFile;
+        }
+    </script>
+</body>
+</html>
